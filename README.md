@@ -2,10 +2,6 @@
 
 Please cite the following paper if you are using this code.
 
-**Reference:** [Author 1], and [Author 2] ([Year]). "[Full paper title: IFGEELMMV ...]", [Journal / Conference name], [Publisher] ([Status, e.g., Under Review / In Revision / Published]).
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 The experiments are executed on a computing system possessing MATLAB [version, e.g., R2024a] with the Statistics and Machine Learning Toolbox and (optionally) the Parallel Computing Toolbox, an [CPU model] processor operating at [clock speed] with [RAM size] of Random Access Memory (RAM), and a [Operating system] operating platform.
 
 We have put a demo of the IFGEELMMV model with the "[dataset name]" dataset.
