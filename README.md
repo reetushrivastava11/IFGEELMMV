@@ -43,6 +43,7 @@ The model executes a grid search over key architectural and regularization param
 - Regularization parameters ($C_1, C_2$)
 - Multi-view coupling parameter ($\rho$)
 - Graph regularization parameter ($\theta$)
+- fuzzy-membership scaling parameter ($\mu$)
 
 ---
 
