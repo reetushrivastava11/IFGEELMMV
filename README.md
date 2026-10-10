@@ -1,79 +1,62 @@
-# IFGEELMMV: Intuitionistic Fuzzy Graph-Embedded Extreme Learning Machine for Multi-View Learning
+# IFGEELMMV: Intuitionistic Fuzzy-Enhanced Multi-View Graph-Embedded Extreme Learning Machine for Noisy and Imbalanced Classification
 
 ## Overview
 
-This repository provides the MATLAB implementation of **IFGEELMMV**, an Intuitionistic Fuzzy Graph-Embedded Extreme Learning Machine designed for multi-view learning. The framework integrates intuitionistic fuzzy modeling, graph-based learning, and Extreme Learning Machine (ELM) principles to support classification using multi-view data.
+This repository provides the MATLAB implementation of **IFGEELMMV** (Intuitionistic Fuzzy-Enhanced Multi-View Graph-Embedded Extreme Learning Machine for Noisy and Imbalanced Classification). The framework integrates intuitionistic fuzzy modeling, graph-based learning (fuzzy-weighted LFDA), and Extreme Learning Machine (ELM) principles to achieve robust binary classification using multi-view data.
 
-The implementation includes model training, hyperparameter optimization through grid search, and comprehensive performance evaluation.
+The implementation includes an automated pipeline for dataset loading, feature scaling, grid-search hyperparameter optimization with 5-fold cross-validation, and comprehensive performance evaluation.
 
-## Citation
-
-If you use this code in your research, please cite the associated research paper:
-
-**[Insert the complete paper citation here]**
-
-If the paper has not yet been published, please update this section when the publication details become available.
-
-## Experimental Environment
-
-The experiments were conducted using MATLAB on a computing system with the following configuration:
-
-- **MATLAB Version:** [Specify MATLAB version]
-- **Processor:** [Specify CPU model]
-- **Clock Speed:** [Specify processor clock speed]
-- **RAM:** [Specify RAM capacity]
-- **Operating System:** [Specify operating system]
+---
 
 ## Repository Contents
 
-- **`Part1_Main_Pipeline.m`** — Contains the main pipeline for loading datasets and initiating the experimental workflow.
-- **`Part2_Model_Functions.m`** — Contains the model-related functions for intuitionistic fuzzy processing, graph/LFDA-related computations, and classification.
-- **`Part3_Evaluation_and_Plots.m`** — Contains the evaluation procedures, hyperparameter search routines, and performance visualization functions.
-- **`README.md`** — Provides an overview of the repository and instructions for using the code.
+- **`IFGEELMMV.m`** — Main entry script. Handles dataset discovery, 5-fold grid search, evaluation, and saves results.
+- **`functions/ifelm_multiview_train.m`** — Core training and testing  for the intuitionistic fuzzy graph-embedded multi-view ELM.
+- **`functions/graph_embedding.m`** — Computes fuzzy-weighted graph regularization matrices.
+- **`functions/evaluation_metrics.m`** — Evaluates performance metrics including G-mean and Area Under the ROC Curve (AUC).
+- **`datasets/`** — Directory containing the input CSV datasets.
 
-*Note: The MATLAB files are organized into separate parts for repository management. Their function dependencies and execution order should be checked before running them as independent files.*
+
+---
 
 ## Dataset Format
 
-Prepare the dataset in CSV format before running the experiments.
+1. Prepare your benchmark datasets in **CSV format** and place them inside the `datasets/` folder.
+2. Each CSV file should contain feature columns followed by the class label in the **last column**.
+3. The labels must be binary classes (e.g., `{0, 1}` or `{-1, 1}`).
+4. The feature space is automatically split into two halves internally to represent the two distinct views.
 
-- Each CSV file should contain the input features and corresponding class labels.
-- The **last column should contain the class labels**.
-- Place the dataset files in the designated `datasets` folder.
-- Ensure that the dataset format is consistent with the data-loading procedure implemented in the code.
+---
+
+## Experimental Environment
+
+- **Language:** MATLAB
+- **Toolboxes Required:** Statistics and Machine Learning Toolbox
+- **Optional Toolboxes:** Parallel Computing Toolbox (automatically utilizes `parpool` if available for accelerated grid search; falls back to serial execution otherwise).
+
+---
 
 ## Hyperparameter Optimization
 
-The implementation includes a grid-search procedure for evaluating model configurations. The hyperparameter ranges and experimental settings should be configured according to the corresponding research paper or the settings specified in the code.
+The model executes a grid search over key architectural and regularization parameters using 5-fold cross-validation, optimized primarily for **G-mean**:
+- Number of hidden nodes ($h$)
+- Regularization parameters ($C_1, C_2$)
+- Multi-view coupling parameter ($\rho$)
+- Graph regularization parameter ($\theta$)
 
-## Performance Evaluation
+---
 
-The implementation supports the evaluation of classification performance using the following metrics, where implemented by the code:
+## How to Run
 
-- Area Under the ROC Curve (AUC)
-- Geometric Mean (G-mean)
+1. Clone or download this repository to your local machine.
+2. Ensure your CSV dataset files are placed inside the `datasets/` folder.
+3. Open **MATLAB** and set the current folder to the root directory of this repository.
+4. Open and run **`IFGEELMMV.m`** (or type `IFGEELMMV` in the MATLAB Command Window).
+5. Once execution finishes, a summary table containing best hyperparameters and average metrics (G-mean, AUC) will be displayed and saved to **`IFGEELMMV_results.csv`**.
 
+---
 
-The experimental results can be saved for subsequent analysis and comparison.
+## Citation
 
-## How to Use
+If you use this code or benchmark findings in your research, please cite the corresponding paper
 
-1. Clone or download this repository.
-2. Place the required CSV datasets in the `datasets` folder.
-3. Open MATLAB and navigate to the repository directory.
-4. Check the function dependencies and execution order of the MATLAB files.
-5. Run the appropriate main script and configure the dataset and hyperparameters as required.
-6. Review the generated performance metrics and experimental outputs.
-
-## Issues and Contact
-
-If you encounter any bugs, errors, or implementation-related issues, please open an issue in this GitHub repository.
-
-For research-related queries, contact:
-
-**Author:** [Your name]  
-**Email:** [Your email address]
-
-## Disclaimer
-
-This repository is intended for research and academic use. Please refer to the associated research paper for the complete methodology, theoretical formulation, and detailed experimental settings.
